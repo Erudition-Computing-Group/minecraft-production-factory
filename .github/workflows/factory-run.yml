@@ -21,6 +21,8 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - name: Run orchestrator
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: python -m agents.orchestrator --batch "${{ inputs.batch || 'config/batch_01.json' }}"
       - name: Upload artifacts
         if: always()

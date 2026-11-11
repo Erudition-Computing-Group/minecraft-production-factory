@@ -20,8 +20,12 @@ jobs:
           java-version: "21"
       - run: pip install -r requirements.txt
       - name: Python tests
-        run: python scripts/run_tests.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: python -m pytest tests/qa_benchmarks/ -v
       - name: Particle demo
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: python scripts/particle_demo.py
       - name: Java build
         working-directory: src/java_plugins

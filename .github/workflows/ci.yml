@@ -18,8 +18,12 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - name: Run particle engine tests
-        run: python scripts/run_tests.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: python -m pytest tests/qa_benchmarks/ -v
       - name: Run particle demo (smoke)
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: python scripts/particle_demo.py
 
   # ── 2. Build Java plugin ─────────────────────────────────────
@@ -86,14 +90,15 @@ jobs:
       - name: Check Python syntax
         run: python -m py_compile particles/*.py agents/*.py scripts/*.py
       - name: Validate workflow YAML
-        run: python -c "
-import yaml, glob, sys
-for f in glob.glob('.github/workflows/*.yml') + ['.github/dependabot.yml']:
-    with open(f) as fh:
-        d = yaml.safe_load(fh)
-    assert d and 'jobs' in d or 'updates' in d, f'Invalid: {f}'
-    print(f'OK: {f}')
-"
+        run: |
+          python -c "
+          import yaml, glob
+          for f in glob.glob('.github/workflows/*.yml') + ['.github/dependabot.yml']:
+              with open(f) as fh:
+                  d = yaml.safe_load(fh)
+              assert d and ('jobs' in d or 'updates' in d), f'Invalid: {f}'
+              print(f'OK: {f}')
+          "
       - name: Check for TODO/FIXME
         run: |
           if grep -rn "TODO\|FIXME\|HACK" --include="*.py" --include="*.java" . ; then
