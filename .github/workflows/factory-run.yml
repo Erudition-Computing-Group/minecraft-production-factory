@@ -7,6 +7,8 @@ on:
         description: "Path to batch JSON file"
         required: true
         default: "config/batch_01.json"
+  schedule:
+    - cron: "0 0 * * 0"  # Weekly on Sunday midnight UTC
 
 jobs:
   run_factory:
@@ -18,12 +20,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python -m agents.orchestrator --batch "${{ inputs.batch }}"
-      - uses: actions/upload-artifact@v4
+      - name: Run orchestrator
+        run: python -m agents.orchestrator --batch "${{ inputs.batch || 'config/batch_01.json' }}"
+      - name: Upload artifacts
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: factory-run
+          name: factory-run-${{ github.run_number }}
           path: |
             logs/
             memory/episodic/
             src/
+          retention-days: 30
