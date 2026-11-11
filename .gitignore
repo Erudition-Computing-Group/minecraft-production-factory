@@ -22,6 +22,7 @@ world/
 world_nether/
 world_the_end/
 minecraft-data/
+dist/
 
 # Agent runtime artifacts
 memory/episodic/active_runs/*.json

@@ -26,6 +26,23 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         run: python scripts/particle_demo.py
 
+  validate_bedrock:
+    name: Validate and package Bedrock resource pack
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate and package .mcpack
+        run: python scripts/bedrock_pack.py --output dist/minecraft-production-factory.mcpack
+      - name: Upload Bedrock resource pack
+        uses: actions/upload-artifact@v4
+        with:
+          name: minecraft-production-factory-bedrock
+          path: dist/minecraft-production-factory.mcpack
+          retention-days: 14
+
   # ── 2. Build Java plugin ─────────────────────────────────────
   build_plugin:
     name: Build PaperMC plugin

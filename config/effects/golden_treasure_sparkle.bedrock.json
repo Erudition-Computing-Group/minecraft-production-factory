@@ -1,0 +1,15 @@
+{
+  "theme": "Golden Treasure sparkle",
+  "edition": "bedrock",
+  "particle_types": ["DUST"],
+  "colors": {
+    "primary": [255, 199, 48],
+    "secondary": [255, 244, 179]
+  },
+  "animation_style": "ambient",
+  "budget": {
+    "max_particles_per_tick": 1,
+    "culling_radius_blocks": 16
+  },
+  "compliance": "Cosmetic-only ambient sparkle. It does not affect entities, blocks, combat, or player abilities."
+}
