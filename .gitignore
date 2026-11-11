@@ -1,0 +1,35 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Java / Gradle
+.gradle/
+build/
+out/
+*.jar
+*.class
+hs_err_pid*
+
+# Minecraft server runtime
+server/
+plugins/*.jar
+logs/latest.log
+world/
+world_nether/
+world_the_end/
+
+# Agent runtime artifacts
+memory/episodic/active_runs/*.json
+logs/agent_traces/*.jsonl
+logs/build_reports/*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

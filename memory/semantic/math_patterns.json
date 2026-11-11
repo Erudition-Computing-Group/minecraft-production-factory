@@ -1,0 +1,34 @@
+{
+  "patterns": [
+    {
+      "name": "parametric_circle",
+      "complexity": "Low/Mid",
+      "formula": "x = r*cos(theta); z = r*sin(theta); theta += step",
+      "examples": ["Halo", "Orbiter"]
+    },
+    {
+      "name": "parametric_helix",
+      "complexity": "Mid",
+      "formula": "x = r*cos(theta); y += dy; z = r*sin(theta); theta += step",
+      "examples": ["Level-up Helix", "Cherry Breeze"]
+    },
+    {
+      "name": "trail_queue",
+      "complexity": "Mid",
+      "formula": "deque of last N player locations; spawn along stored points",
+      "examples": ["Rainbow Ribbon"]
+    },
+    {
+      "name": "rotation_matrix",
+      "complexity": "High",
+      "formula": "apply yaw/pitch matrix to 2D shape offsets",
+      "examples": ["Tilted Galactic Ring"]
+    },
+    {
+      "name": "inward_attraction",
+      "complexity": "High",
+      "formula": "vector = center - particle; velocity += vector * strength",
+      "examples": ["Soul Harvest", "Void Door"]
+    }
+  ]
+}

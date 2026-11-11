@@ -1,0 +1,17 @@
+{
+  "java": {
+    "base_package": "com.particlefactory",
+    "paper_api_version": "1.21.4",
+    "java_version": 21,
+    "interface": "ParticleEffect",
+    "async_scheduler": true,
+    "permission_hook": "LuckPerms",
+    "build_tool": "gradle",
+    "plugins": ["shadowJar", "MockBukkit", "Plugwright"]
+  },
+  "bedrock": {
+    "particle_schema_version": "1.10.0",
+    "tools": ["Blockbench", "Snowstorm"],
+    "pack_types": ["resource_pack", "behavior_pack"]
+  }
+}

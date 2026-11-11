@@ -1,0 +1,14 @@
+{
+  "max_particles_per_tick": 150,
+  "max_mspt": 50,
+  "target_tps": 20,
+  "view_distance_culling_blocks": 32,
+  "bounding_box_radius_blocks": 3,
+  "min_tick_interval": 1,
+  "max_animation_period_ticks": 80,
+  "cosmetic_only": true,
+  "allowed_particle_types": [
+    "END_ROD", "DUST", "FLAME", "SOUL_FIRE_FLAME", "PORTAL", "CLOUD", "SMOKE",
+    "HEART", "CRIT", "ENCHANTMENT_TABLE", "BUBBLE", "SNOWFLAKE", "EXPLOSION"
+  ]
+}

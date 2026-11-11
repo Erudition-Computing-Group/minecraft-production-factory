@@ -1,0 +1,29 @@
+name: Factory Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: "Path to batch JSON file"
+        required: true
+        default: "config/batch_01.json"
+
+jobs:
+  run_factory:
+    name: Run particle factory batch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m agents.orchestrator --batch "${{ inputs.batch }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: factory-run
+          path: |
+            logs/
+            memory/episodic/
+            src/

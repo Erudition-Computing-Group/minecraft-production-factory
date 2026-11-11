@@ -1,0 +1,7 @@
+{
+  "papermc_versions": ["1.20.4", "1.21.1", "1.21.4"],
+  "geysermc_support": true,
+  "particle_packet_strategy": "PacketEvents",
+  "dust_data_notes": "DUST RGB structure varies between 1.20.x and 1.21.x; Builder must branch on version.",
+  "test_versions_in_ci": ["1.20.4", "1.21.4"]
+}
