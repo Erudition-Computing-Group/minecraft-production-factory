@@ -4,8 +4,7 @@ main: com.particlefactory.ParticleFactoryPlugin
 api-version: "1.21"
 description: Automated particle effects factory for Minecraft
 authors: [ParticleFactory]
-depend: [LuckPerms]
-softdepend: [PacketEvents]
+softdepend: [LuckPerms, PacketEvents]
 commands:
   cosmetics:
     description: Open the cosmetics GUI

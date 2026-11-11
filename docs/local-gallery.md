@@ -39,6 +39,19 @@ make gallery-build
 # or: python scripts/local_gallery.py --build
 ```
 
+### Web Viewer (BlueMap)
+The server includes **BlueMap** — a 3D web map viewer accessible at:
+```
+http://localhost:8100
+```
+BlueMap renders an interactive 3D view of the world in your browser. It includes:
+- 3D terrain rendering
+- Marker points for particle effect stations
+- Player position tracking
+- Day/night cycle toggle
+
+**Note:** BlueMap renders the world geometry, not live particle effects (particles are client-side only). Use the Minecraft client for full particle visualization.
+
 ### 2. Start the server
 ```bash
 make gallery-start

@@ -92,8 +92,6 @@ services:
     volumes:
       - ollama-data:/root/.ollama
     restart: unless-stopped
-    # Pull model on first run:
-    # docker exec particle-factory-ollama ollama pull gemma4
 
   # ── Minecraft PaperMC Server (local gallery) ──────────────────
   minecraft-server:
@@ -102,6 +100,7 @@ services:
     ports:
       - "25565:25565"
       - "25575:25575"
+      - "8100:8100"  # BlueMap web viewer
     environment:
       EULA: "TRUE"
       TYPE: "PAPER"
@@ -110,7 +109,8 @@ services:
       MOTD: "Particle Factory Gallery Server"
       ENABLE_RCON: "true"
       RCON_PASSWORD: "particlefactory"
-      PLUGINS: ""
+      PLUGINS: |
+        https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v5.13/BlueMap-5.13-paper.jar
       LEVEL_TYPE: "FLAT"
       SPAWN_PROTECTION: "0"
       DIFFICULTY: "peaceful"
@@ -119,6 +119,7 @@ services:
     volumes:
       - ./minecraft-data:/data
       - ./src/java_plugins/build/libs:/plugins:ro
+      - ./bluemap-config:/config/bluemap:ro
     restart: unless-stopped
     tty: true
     stdin_open: true
