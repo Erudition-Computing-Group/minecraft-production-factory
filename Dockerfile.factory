@@ -1,0 +1,33 @@
+# Factory Test Container — runs the entire particle factory pipeline
+# Includes Python 3.12, Java 21, Gradle 8.10, and all dependencies
+
+FROM eclipse-temurin:21-jdk AS base
+
+# Install Python, Gradle, and tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-pip python3-venv \
+    wget unzip git curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Gradle
+RUN wget -q https://services.gradle.org/distributions/gradle-8.10.2-bin.zip -O /tmp/gradle.zip && \
+    unzip -q /tmp/gradle.zip -d /opt && \
+    rm /tmp/gradle.zip
+
+ENV PATH="/opt/gradle-8.10.2/bin:${PATH}"
+ENV JAVA_HOME=/opt/java/openjdk
+
+WORKDIR /app
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --break-system-packages -r requirements.txt
+
+# Copy project
+COPY . .
+
+# Set PYTHONPATH
+ENV PYTHONPATH=/app
+
+# Default: run full test suite
+CMD ["sh", "-c", "python3 scripts/run_tests.py && cd src/java_plugins && gradle test --no-daemon && echo 'ALL TESTS PASSED'"]

@@ -23,6 +23,14 @@ demo:
 ci:
 	docker compose run --rm ci
 
+# ── Factory (full pipeline) ─────────────────────────────────────
+factory:
+	docker compose run --rm factory
+
+factory-ollama:
+	docker compose up -d ollama
+	@echo "Pull model: docker exec particle-factory-ollama ollama pull gemma4"
+
 # ── Local Minecraft Gallery ────────────────────────────────────
 gallery-build:
 	python scripts/local_gallery.py --build

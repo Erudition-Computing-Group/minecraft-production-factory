@@ -100,6 +100,7 @@ minecraft-particle-factory/
 ## Documentation index
 
 - [Architecture & agent roster](docs/architecture.md)
+- [AG2 integration plan](docs/ag2-integration.md)
 - [Roadmap (phases 1–4)](docs/roadmap.md)
 - [LLM stack (local + cloud)](docs/llm-stack.md)
 - [Memory & logging on GitHub](docs/memory-and-logging.md)
