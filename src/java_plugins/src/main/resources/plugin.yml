@@ -1,0 +1,20 @@
+name: ParticleFactory
+version: 1.0.0
+main: com.particlefactory.ParticleFactoryPlugin
+api-version: "1.21"
+description: Automated particle effects factory for Minecraft
+authors: [ParticleFactory]
+depend: [LuckPerms]
+softdepend: [PacketEvents]
+commands:
+  cosmetics:
+    description: Open the cosmetics GUI
+    usage: /cosmetics [equip|unequip|test] [effect]
+    permission: particlefactory.use
+permissions:
+  particlefactory.use:
+    description: Use cosmetics
+    default: true
+  particlefactory.admin:
+    description: Admin commands
+    default: op
