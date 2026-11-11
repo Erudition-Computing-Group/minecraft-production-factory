@@ -32,19 +32,52 @@ See [`docs/architecture.md`](docs/architecture.md).
 
 ## Quick start
 
+### Option A: Docker (recommended — matches CI exactly)
+
 ```bash
 # 1. Clone
-git clone git@github.com:<you>/minecraft-particle-factory.git
+git clone git@github.com:Erudition-Computing-Group/minecraft-production-factory.git
+cd minecraft-production-factory
+
+# 2. Run all tests
+docker compose run --rm python-tests
+docker compose run --rm java-tests
+
+# 3. Build plugin JAR
+docker compose run --rm java-build
+
+# 4. Run particle demo
+docker compose run --rm python-demo
+
+# Or use make:
+make test      # all tests
+make build     # build JAR
+make ci        # full CI check
+make clean     # clean up
+```
+
+### Option B: Local (no Docker)
+
+```bash
+# 1. Clone
+git clone git@github.com:Erudition-Computing-Group/minecraft-production-factory.git
 cd minecraft-particle-factory
 
 # 2. Python tooling (agents + tests)
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-# 3. Run a batch
+# 3. Run tests
+python -m pytest tests/qa_benchmarks/ -v
+python scripts/particle_demo.py
+
+# 4. Java build (requires Gradle 8+ and Java 21)
+cd src/java_plugins && gradle shadowJar --no-daemon
+
+# 5. Run a batch
 python -m agents.orchestrator --batch config/batch_01.json
 
-# 4. Local visual check
+# 6. Local visual check
 # drop build/libs/*.jar into a PaperMC server's plugins/ folder, connect via localhost
 ```
 

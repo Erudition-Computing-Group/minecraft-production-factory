@@ -1,0 +1,8 @@
+.git
+__pycache__
+*.pyc
+.gradle
+build
+*.jar
+node_modules
+.env

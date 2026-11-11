@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  # ── Python tests ──────────────────────────────────────────────
+  python-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    command: python -m pytest tests/qa_benchmarks/ -v
+
+  # ── Python demo (smoke test) ──────────────────────────────────
+  python-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    command: python scripts/particle_demo.py
+
+  # ── Java/Gradle build ─────────────────────────────────────────
+  java-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.java
+    volumes:
+      - ./src/java_plugins:/app
+    command: gradle shadowJar --no-daemon
+
+  # ── Java tests ────────────────────────────────────────────────
+  java-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.java
+    volumes:
+      - ./src/java_plugins:/app
+    command: gradle test --no-daemon
+
+  # ── Full CI (all checks) ──────────────────────────────────────
+  ci:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    command: >
+      sh -c "
+        python -m pytest tests/qa_benchmarks/ -v &&
+        python scripts/particle_demo.py &&
+        echo 'All Python checks passed!'
+      "
+    depends_on:
+      - java-build
