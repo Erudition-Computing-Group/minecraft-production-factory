@@ -1,16 +1,15 @@
 """Simple test runner (no pytest needed)."""
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 # Import test modules
 import importlib.util
 
-test_files = [
-    "tests/qa_benchmarks/test_schemas.py",
-    "tests/qa_benchmarks/test_math_bounds.py",
-    "tests/qa_benchmarks/test_particles.py",
-]
+test_files = sorted(
+    str(p.relative_to(ROOT)) for p in (ROOT / "tests" / "qa_benchmarks").glob("test_*.py")
+)
 
 passed = 0
 failed = 0

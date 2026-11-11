@@ -82,8 +82,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: pip install -r requirements.txt
       - name: Check Python syntax
         run: python -m py_compile particles/*.py agents/*.py scripts/*.py
+      - name: Validate workflow YAML
+        run: python -c "
+import yaml, glob, sys
+for f in glob.glob('.github/workflows/*.yml') + ['.github/dependabot.yml']:
+    with open(f) as fh:
+        d = yaml.safe_load(fh)
+    assert d and 'jobs' in d or 'updates' in d, f'Invalid: {f}'
+    print(f'OK: {f}')
+"
       - name: Check for TODO/FIXME
         run: |
           if grep -rn "TODO\|FIXME\|HACK" --include="*.py" --include="*.java" . ; then
