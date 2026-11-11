@@ -1,5 +1,9 @@
 # Minecraft Particle Effects Factory
 
+![CI](https://github.com/Erudition-Computing-Group/minecraft-production-factory/actions/workflows/ci.yml/badge.svg)
+![Nightly](https://github.com/Erudition-Computing-Group/minecraft-production-factory/actions/workflows/nightly.yml/badge.svg)
+![Release](https://github.com/Erudition-Computing-Group/minecraft-production-factory/actions/workflows/release.yml/badge.svg)
+
 > An automated, multi-agent pipeline that turns raw creative concepts ("Cybernetic Wings", "Soul Harvest")
 > into compiled, performance-tested, store-ready Minecraft particle-effect assets — complete with Java/PaperMC
 > source, Bedrock `.particle.json` files, LuckPerms nodes, and marketplace listings.
