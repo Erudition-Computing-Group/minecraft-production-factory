@@ -49,10 +49,12 @@ python -m agents.orchestrator --batch config/batch_01.json
 ```
 minecraft-particle-factory/
 ├── agents/          # Agent implementations + system prompts + JSON schemas
+├── particles/       # Particle math engine (Vec3, Particle, forces, spawners, emitters)
 ├── config/          # Particle budgets, template manifests, compatibility matrix
 ├── memory/          # Semantic (long-term) + episodic (run state) memory
 ├── src/             # Generated outputs: java_plugins/, bedrock_addons/
-├── tests/           # Schema + math-bounds + MockBukkit + Plugwright
+├── scripts/         # Demo, smoke tests, test runner
+├── tests/           # Schema + math-bounds + particle engine tests
 ├── logs/            # Structured JSONL agent traces + build reports
 ├── docs/            # Architecture, roadmap, LLM stack, testing, costs, ...
 └── .github/         # Workflows, issue templates, PR template

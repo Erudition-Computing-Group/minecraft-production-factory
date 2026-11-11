@@ -16,10 +16,16 @@ def verify_bounding_box(formulas_py, ticks=80, radius=3.0):
     formulas_py: a string of Python defining a function `coords(t)` returning (x,y,z).
     Returns (ok, message).
     """
+    import math as _math
+    safe_builtins = {
+        "abs": abs, "min": min, "max": max, "round": round,
+        "range": range, "len": len, "float": float, "int": int,
+        "math": _math, "__import__": __import__,
+    }
     ns = {}
     try:
-        exec(formulas_py, {"__builtins__": {}}, ns)  # noqa: S102
-    except Exception as e:  # pragma: no cover
+        exec(formulas_py, {"__builtins__": safe_builtins}, ns)  # noqa: S102
+    except Exception as e:
         return False, f"exec failed: {e}"
     coords = ns.get("coords")
     if not callable(coords):
