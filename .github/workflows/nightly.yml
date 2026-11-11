@@ -29,7 +29,7 @@ jobs:
         run: python scripts/particle_demo.py
       - name: Java build
         working-directory: src/java_plugins
-        run: ./gradlew shadowJar --no-daemon
+        run: gradle shadowJar --no-daemon
       - name: Upload nightly JAR
         uses: actions/upload-artifact@v4
         with:
