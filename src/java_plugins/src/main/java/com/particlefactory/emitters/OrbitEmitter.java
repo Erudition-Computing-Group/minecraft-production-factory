@@ -1,6 +1,7 @@
 package com.particlefactory.emitters;
 
 import com.particlefactory.math.Particle;
+import com.particlefactory.math.Spawners;
 import com.particlefactory.math.Vec3;
 import java.util.ArrayList;
 import java.util.List;
