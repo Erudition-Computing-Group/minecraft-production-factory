@@ -1,0 +1,53 @@
+// Particle Effect Gallery Data
+const galleryData = [
+    { name: "Phoenix Wings", category: "Cosmetic", edition: "java", description: "Fiery orange and red flame particles that flap gently and shed falling ember sparks.", math: "Bezier curves + rotation matrix", particles: 120, complexity: "High" },
+    { name: "Cybernetic Wings", category: "Cosmetic", edition: "java", description: "Crisp cyan and white end-rod particles arranged in geometric, segmented frames.", math: "Vector table + parametric", particles: 100, complexity: "High" },
+    { name: "Void Wings", category: "Cosmetic", edition: "java", description: "Dark purple portal and black ink particles that swirl inward like a miniature black hole.", math: "Inward attraction + vortex", particles: 150, complexity: "High" },
+    { name: "Fairy Wings", category: "Cosmetic", edition: "java", description: "Pastel-colored dust particles in a fast-fluttering, figure-eight pattern.", math: "Parametric curves", particles: 80, complexity: "Mid" },
+    { name: "Skeletal Wings", category: "Cosmetic", edition: "java", description: "White cloud and ash particles forming sharp, jagged, rib-like wing structures.", math: "Bezier curves", particles: 90, complexity: "High" },
+    { name: "Angelic Halo", category: "Cosmetic", edition: "java", description: "A clean, rotating ring of gold-tinted glow particles hovering above the player's head.", math: "Parametric circle", particles: 12, complexity: "Low/Mid" },
+    { name: "Devil Horns", category: "Cosmetic", edition: "java", description: "Two curved arcs of crimson dust and occasional lava sparks.", math: "Parametric curves", particles: 30, complexity: "Mid" },
+    { name: "Orbiting Planets", category: "Cosmetic", edition: "java", description: "Tiny multi-colored particle spheres circling the player's head at different angles.", math: "Orbit emitter", particles: 6, complexity: "Low/Mid" },
+    { name: "Personal Storm Cloud", category: "Cosmetic", edition: "java", description: "Dense gray smoke overhead with yellow electric sparks and water droplets.", math: "Static cluster + turbulence", particles: 50, complexity: "Mid" },
+    { name: "Soul-Fire Crown", category: "Cosmetic", edition: "java", description: "Jagged pulsing ring of blue soul-flame particles on the player's head.", math: "Parametric circle", particles: 16, complexity: "Low/Mid" },
+    { name: "Galactic Rings", category: "Cosmetic", edition: "java", description: "Rotating tilted plane of blue, purple, and silver sparkle particles.", math: "Rotation matrix", particles: 60, complexity: "High" },
+    { name: "Cybernetic Glitch Steps", category: "Cosmetic", edition: "java", description: "Neon cyan digital runes and static erupting from feet while moving.", math: "Event-triggered spawn", particles: 20, complexity: "Low" },
+    { name: "Rainbow Ribbon Trail", category: "Cosmetic", edition: "java", description: "Multi-colored dust band trailing behind the player.", math: "Trail (queue)", particles: 40, complexity: "Mid" },
+    { name: "DNA Double Helix", category: "Cosmetic", edition: "java", description: "Two intertwined spirals of contrasting colors rising from feet to head.", math: "Double helix", particles: 24, complexity: "Mid" },
+    { name: "Soul Harvest", category: "Combat", edition: "java", description: "Green soul particles burst from defeated player and spiral into killer's chest.", math: "Burst + attractor", particles: 30, complexity: "High" },
+    { name: "Critical Shockwave", category: "Combat", edition: "java", description: "Expanding ring of red dust particles on critical hit.", math: "Expanding ring", particles: 20, complexity: "Mid" },
+    { name: "Level Up Helix", category: "Combat", edition: "java", description: "Two contrasting spirals rising quickly from feet to head.", math: "Double helix", particles: 20, complexity: "Mid" },
+    { name: "Enchantment Glyphs Pull", category: "Combat", edition: "java", description: "Enchantment table runes pull inward toward held item.", math: "Inward attraction", particles: 15, complexity: "High" },
+    { name: "Poison Cloud", category: "Combat", edition: "java", description: "Static low-lying greenish-gray cloud lingering at a location.", math: "Static cluster", particles: 25, complexity: "Low" },
+    { name: "Cherry Blossom Breeze", category: "Ambient", edition: "bedrock", description: "Slow massive swirl of pink petal particles filling an area.", math: "Helical (large radius)", particles: 100, complexity: "Mid" },
+    { name: "Cursed Void Spasms", category: "Ambient", edition: "bedrock", description: "Dark purple portal particles violently yanked inward toward a central hole.", math: "Inward attraction", particles: 40, complexity: "High" },
+    { name: "Deep-Sea Bubble Vents", category: "Ambient", edition: "bedrock", description: "Thick vertical column of large bubbles erupting from floor.", math: "Circular spawn + Y velocity", particles: 30, complexity: "Low/Mid" },
+    { name: "Golden Treasure Sparkle", category: "Ambient", edition: "bedrock", description: "Subtle infrequent gold sparkles around hidden loot.", math: "Random-point spawn", particles: 5, complexity: "Low" },
+    { name: "Phoenix Rise Wings", category: "Cosmetic", edition: "bedrock", description: "Jagged frames of slow-drifting red and orange embers.", math: "Bezier curves", particles: 100, complexity: "High" },
+];
+
+const agentsData = [
+    { name: "Concept & Spec Agent", icon: "fa-lightbulb", color: "green", role: "Translates a theme into a structured JSON spec", model: "Gemma 4 12B / Claude Sonnet", input: "Raw idea", output: "JSON spec (particles, colors, budget, compliance)" },
+    { name: "Math & Geometry Agent", icon: "fa-calculator", color: "blue", role: "Solves 3D parametric equations and rotation matrices", model: "Qwen 3 27B / GPT-6 Sol", input: "Technical spec", output: "Verified (x,y,z) formulas + Python sanity check" },
+    { name: "Builder Agent", icon: "fa-code", color: "purple", role: "Writes production Java/PaperMC or Bedrock .particle.json", model: "Devstral Small 2 / Qwen 3 Coder", input: "Math formulas + spec", output: ".java source files or .particle.json" },
+    { name: "QA & Performance Agent", icon: "fa-shield-halved", color: "yellow", role: "Compiles, lints, stress-tests TPS/MSPT", model: "GPT-OSS 20B / Claude Opus", input: "Source code", output: "Compiled JAR + performance report or [QA-FAIL]" },
+    { name: "Storefront & Ops Agent", icon: "fa-store", color: "pink", role: "Packages releases, writes listings, emits delivery commands", model: "Gemma 4 12B", input: "Compiled asset + spec", output: "Store copy + Tebex commands + changelog" },
+];
+
+const docsData = [
+    { title: "Architecture", file: "architecture.md", icon: "fa-sitemap", description: "Agent roster, pipeline workflow, tech stack" },
+    { title: "Roadmap", file: "roadmap.md", icon: "fa-road", description: "4-phase rollout from MVP to Marketplace" },
+    { title: "LLM Stack", file: "llm-stack.md", icon: "fa-brain", description: "Model mapping for local and cloud agents" },
+    { title: "Memory & Logging", file: "memory-and-logging.md", icon: "fa-database", description: "GitHub-adapted memory and telemetry" },
+    { title: "Ticket Taxonomy", file: "ticket-taxonomy.md", icon: "fa-ticket", description: "GitHub issue templates for agent handoffs" },
+    { title: "Test Strategy", file: "test-strategy.md", icon: "fa-vial", description: "4-layer testing pyramid" },
+    { title: "APIs & SDKs", file: "apis-and-sdks.md", icon: "fa-plug", description: "Minecraft, GitHub, and storefront APIs" },
+    { title: "Cost Analysis", file: "cost-analysis.md", icon: "fa-dollar-sign", description: "Infrastructure and platform fee breakdown" },
+    { title: "Particle Concepts", file: "particle-concepts.md", icon: "fa-sparkles", description: "24 effect concepts with math complexity" },
+    { title: "Particle Math", file: "particle-math.md", icon: "fa-square-root-variable", description: "Complete math reference for particle systems" },
+    { title: "Visual Review", file: "visual-review.md", icon: "fa-eye", description: "Human-in-the-loop visual gate" },
+    { title: "Go-to-Market", file: "go-to-market.md", icon: "fa-rocket", description: "Blind spots, pricing, licensing" },
+    { title: "GitHub Actions Plan", file: "github-actions-plan.md", icon: "fa-gears", description: "Complete CI/CD strategy" },
+    { title: "Local Gallery", file: "local-gallery.md", icon: "fa-gamepad", description: "Local Minecraft testing environment" },
+    { title: "itzg Integration", file: "itzg-integration-plan.md", icon: "fa-server", description: "Docker-based server testing plan" },
+];

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Particle Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --mc-green: #3fb950;
+            --mc-dark: #0d1117;
+            --mc-card: #161b22;
+            --mc-border: #30363d;
+        }
+        body { background: var(--mc-dark); color: #c9d1d9; }
+        .card { background: var(--mc-card); border: 1px solid var(--mc-border); }
+        .card:hover { border-color: var(--mc-green); transform: translateY(-2px); transition: all 0.2s; }
+        .gradient-text { background: linear-gradient(135deg, #3fb950, #58a6ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gallery-card { position: relative; overflow: hidden; border-radius: 12px; }
+        .gallery-card img { transition: transform 0.3s; }
+        .gallery-card:hover img { transform: scale(1.05); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; }
+        .search-box { background: #21262d; border: 1px solid var(--mc-border); }
+        .search-box:focus { border-color: var(--mc-green); outline: none; }
+        .nav-link { color: #8b949e; transition: color 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--mc-green); }
+        .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; }
+        .tag-java { background: #1f3a5f; color: #58a6ff; }
+        .tag-bedrock { background: #3a1f5f; color: #bc8cff; }
+        .tag-cosmetic { background: #1f3a2f; color: #3fb950; }
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#0d1117]/95 backdrop-blur border-b border-[#30363d]">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-cube text-2xl text-green-400"></i>
+                <span class="text-xl font-bold gradient-text">Particle Factory</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#docs" class="nav-link">Docs</a>
+                <a href="#agents" class="nav-link">Agents</a>
+                <a href="#architecture" class="nav-link">Architecture</a>
+                <a href="https://github.com/Erudition-Computing-Group/minecraft-production-factory" target="_blank" class="nav-link">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="max-w-7xl mx-auto px-4 py-16 text-center">
+        <h1 class="text-5xl font-bold mb-4 gradient-text">Minecraft Particle Effects Factory</h1>
+        <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+            An automated multi-agent pipeline that turns creative concepts into compiled, performance-tested,
+            store-ready Minecraft particle effects — complete with Java plugins, Bedrock add-ons, and marketplace listings.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="#gallery" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold">
+                <i class="fas fa-images mr-2"></i>View Gallery
+            </a>
+            <a href="#docs" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold">
+                <i class="fas fa-book mr-2"></i>Read Docs
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="card rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-green-400">24</div>
+                <div class="text-gray-400 text-sm">Particle Concepts</div>
+            </div>
+            <div class="card rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-blue-400">5</div>
+                <div class="text-gray-400 text-sm">AI Agents</div>
+            </div>
+            <div class="card rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-purple-400">150</div>
+                <div class="text-gray-400 text-sm">Max Particles/Tick</div>
+            </div>
+            <div class="card rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-yellow-400">70%</div>
+                <div class="text-gray-400 text-sm">Creator Revenue Share</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+        <div class="relative">
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <input id="searchInput" type="text" placeholder="Search docs, effects, agents..."
+                class="search-box w-full pl-12 pr-4 py-3 rounded-lg text-white">
+        </div>
+        <div id="searchResults" class="mt-4 hidden"></div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8 gradient-text">Particle Effect Gallery</h2>
+        <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Agents -->
+    <section id="agents" class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8 gradient-text">The 5-Agent Pipeline</h2>
+        <div id="agentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture" class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8 gradient-text">Architecture</h2>
+        <div class="card rounded-lg p-6">
+            <pre class="text-sm text-green-300 overflow-x-auto"><code>Trigger → Concept & Spec → Math & Geometry → Builder → QA & Performance → Visual Review → Storefront & Ops → Release</code></pre>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="card rounded-lg p-4">
+                <h3 class="font-bold text-green-400 mb-2">Python Engine</h3>
+                <p class="text-sm text-gray-400">Vec3, Particle, Forces, Spawners, Emitters — the math brain</p>
+            </div>
+            <div class="card rounded-lg p-4">
+                <h3 class="font-bold text-blue-400 mb-2">Java Plugin</h3>
+                <p class="text-sm text-gray-400">PaperMC plugin with Burst + Orbit emitters, /cosmetics commands</p>
+            </div>
+            <div class="card rounded-lg p-4">
+                <h3 class="font-bold text-purple-400 mb-2">CI/CD</h3>
+                <p class="text-sm text-gray-400">6 GitHub Actions workflows, Docker Compose, automated testing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs -->
+    <section id="docs" class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8 gradient-text">Documentation</h2>
+        <div id="docsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#30363d] py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>Minecraft Particle Effects Factory — MIT License</p>
+            <p class="mt-2">
+                <a href="https://github.com/Erudition-Computing-Group/minecraft-production-factory" class="text-green-400 hover:underline">
+                    <i class="fab fa-github mr-1"></i> GitHub Repository
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
