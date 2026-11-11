@@ -39,6 +39,16 @@ gallery-deploy:
 gallery-logs:
 	python scripts/local_gallery.py --logs
 
+# ── Testing ────────────────────────────────────────────────────
+e2e-test:
+	python scripts/e2e_test.py
+
+benchmark:
+	python scripts/benchmark.py --duration 30
+
+rcon:
+	python scripts/rcon_client.py $(CMD)
+
 # Clean up
 clean:
 	docker compose down --volumes --remove-orphans

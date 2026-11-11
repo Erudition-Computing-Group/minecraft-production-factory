@@ -110,6 +110,7 @@ minecraft-particle-factory/
 - [24 particle concepts](docs/particle-concepts.md)
 - [Visual review gate](docs/visual-review.md)
 - [Local Minecraft gallery](docs/local-gallery.md)
+- [itzg integration plan](docs/itzg-integration-plan.md)
 - [Go-to-market & blind spots](docs/go-to-market.md)
 
 ## License
