@@ -109,6 +109,7 @@ minecraft-particle-factory/
 - [Cost analysis](docs/cost-analysis.md)
 - [24 particle concepts](docs/particle-concepts.md)
 - [Visual review gate](docs/visual-review.md)
+- [Local Minecraft gallery](docs/local-gallery.md)
 - [Go-to-market & blind spots](docs/go-to-market.md)
 
 ## License

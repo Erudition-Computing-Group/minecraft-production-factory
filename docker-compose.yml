@@ -56,3 +56,26 @@ services:
       "
     depends_on:
       - java-build
+
+  # ── Minecraft PaperMC Server (local gallery) ──────────────────
+  minecraft-server:
+    image: itzg/minecraft-server:latest
+    container_name: particle-factory-mc
+    ports:
+      - "25565:25565"
+      - "25575:25575"  # RCON
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      VERSION: "1.21.4"
+      MEMORY: "2G"
+      MOTD: "Particle Factory Gallery Server"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "particlefactory"
+      PLUGINS: ""
+    volumes:
+      - ./minecraft-data:/data
+      - ./src/java_plugins/build/libs:/plugins:ro
+    restart: unless-stopped
+    tty: true
+    stdin_open: true

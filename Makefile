@@ -23,6 +23,22 @@ demo:
 ci:
 	docker compose run --rm ci
 
+# ── Local Minecraft Gallery ────────────────────────────────────
+gallery-build:
+	python scripts/local_gallery.py --build
+
+gallery-start:
+	python scripts/local_gallery.py --start
+
+gallery-stop:
+	python scripts/local_gallery.py --stop
+
+gallery-deploy:
+	python scripts/local_gallery.py --deploy
+
+gallery-logs:
+	python scripts/local_gallery.py --logs
+
 # Clean up
 clean:
 	docker compose down --volumes --remove-orphans
