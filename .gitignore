@@ -21,6 +21,7 @@ logs/latest.log
 world/
 world_nether/
 world_the_end/
+minecraft-data/
 
 # Agent runtime artifacts
 memory/episodic/active_runs/*.json
