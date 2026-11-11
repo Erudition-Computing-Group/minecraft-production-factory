@@ -56,6 +56,19 @@ make ci        # full CI check
 make clean     # clean up
 ```
 
+### Bedrock resource-pack test
+
+```bash
+python scripts/bedrock_pack.py --output dist/minecraft-production-factory.mcpack
+```
+
+Import the resulting `.mcpack` into Minecraft Bedrock for final in-game review.
+See [Bedrock particle testing](docs/bedrock-testing.md) for the development-pack
+path, command, and acceptance checklist.
+
+The first complete pilot is [Golden Treasure sparkle](docs/effects/golden-treasure-sparkle.md),
+with its agent handoffs, test artifact, and lessons learned recorded in the repo.
+
 ### Option B: Local (no Docker)
 
 ```bash
@@ -111,6 +124,7 @@ minecraft-particle-factory/
 - [24 particle concepts](docs/particle-concepts.md)
 - [Visual review gate](docs/visual-review.md)
 - [Local Minecraft gallery](docs/local-gallery.md)
+- [Bedrock particle testing](docs/bedrock-testing.md)
 - [itzg integration plan](docs/itzg-integration-plan.md)
 - [Go-to-market & blind spots](docs/go-to-market.md)
 
