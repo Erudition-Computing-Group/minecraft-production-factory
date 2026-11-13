@@ -18,6 +18,10 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.10.2"
       - run: pip install -r requirements.txt
       - name: Python tests
         env:
