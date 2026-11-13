@@ -23,7 +23,7 @@ jobs:
         working-directory: src/java_plugins
         run: gradle shadowJar --no-daemon
       - name: Validate and package Bedrock resource pack
-        run: python scripts/bedrock_pack.py --output dist/minecraft-production-factory.mcpack
+        run: python3 scripts/bedrock_pack.py --output dist/minecraft-production-factory.mcpack
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
