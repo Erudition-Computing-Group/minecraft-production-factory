@@ -1,7 +1,7 @@
-.PHONY: test test-python test-java build demo ci clean
+.PHONY: test test-python test-java test-bedrock build bedrock-pack demo ci clean
 
 # Run all tests
-test: test-python test-java
+test: test-python test-java test-bedrock
 
 # Python tests
 test-python:
@@ -10,6 +10,14 @@ test-python:
 # Java tests
 test-java:
 	docker compose run --rm java-tests
+
+# Bedrock resource-pack validation
+test-bedrock:
+	python scripts/bedrock_pack.py
+
+# Package a resource pack that can be imported by Minecraft Bedrock
+bedrock-pack:
+	python scripts/bedrock_pack.py --output dist/minecraft-production-factory.mcpack
 
 # Build plugin JAR
 build:

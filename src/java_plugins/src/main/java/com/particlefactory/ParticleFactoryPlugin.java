@@ -2,6 +2,7 @@ package com.particlefactory;
 
 import com.particlefactory.emitters.BurstEmitter;
 import com.particlefactory.emitters.Emitter;
+import com.particlefactory.emitters.GoldenTreasureEmitter;
 import com.particlefactory.emitters.OrbitEmitter;
 import com.particlefactory.math.Particle;
 import com.particlefactory.math.Vec3;
@@ -68,7 +69,7 @@ public class ParticleFactoryPlugin extends JavaPlugin {
         UUID uuid = player.getUniqueId();
 
         if (args.length == 0) {
-            player.sendMessage("Usage: /cosmetics [burst|orbit|clear]");
+            player.sendMessage("Usage: /cosmetics [burst|orbit|treasure|clear]");
             return true;
         }
 
@@ -87,6 +88,14 @@ public class ParticleFactoryPlugin extends JavaPlugin {
                 OrbitEmitter orbit = new OrbitEmitter(pos2, 12, 0.8, 0.3, 0.15, 40, 0.08, 1.0, 0.9, 0.3);
                 list2.add(orbit);
                 player.sendMessage("Orbit effect activated!");
+                break;
+            case "treasure":
+                List<Emitter> treasureEmitters = activeEmitters.computeIfAbsent(uuid, k -> new ArrayList<>());
+                Location treasureLocation = player.getLocation();
+                treasureEmitters.add(new GoldenTreasureEmitter(
+                    new Vec3(treasureLocation.getX(), treasureLocation.getY() + 0.8, treasureLocation.getZ())
+                ));
+                player.sendMessage("Golden Treasure sparkle activated for 10 seconds!");
                 break;
             case "clear":
                 activeEmitters.remove(uuid);
